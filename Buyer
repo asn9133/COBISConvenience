@@ -1,0 +1,50 @@
+package com.company;
+import java.util.ArrayList;
+
+public class Buyer {
+    private String customer_name;
+    private ArrayList<Order> customer_order = new ArrayList<Order>();
+
+    public Buyer(String customer_name, ArrayList<Order> customer_order) {
+        this.customer_name = customer_name;
+        this.customer_order = customer_order;
+    }
+
+    public Buyer(){
+
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public ArrayList<Order> getCustomer_order() {
+        return customer_order;
+    }
+
+    public void setCustomer_order(ArrayList<Order> customer_order) {
+        this.customer_order = customer_order;
+    }
+
+    public void ordItem(Order order) {
+        customer_order.add(order);
+    }
+
+    public String toString() {
+        String result = "";
+        double total = 0;
+        result = result + customer_name;
+        for (int k = 0; k < customer_order.size(); k++) {
+            result = result + customer_order.get(k).getOrdered_Product();
+        }
+        for (int k = 0; k < customer_order.size(); k++) {
+            total = total + customer_order.get(k).getOrdered_Price();
+        }
+        result = result + total;
+        return result;
+    }
+}
