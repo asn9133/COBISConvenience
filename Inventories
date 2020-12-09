@@ -1,0 +1,32 @@
+package com.company;
+
+import java.util.ArrayList;
+
+public class Inventories {
+    private ArrayList<Order> inventory = new ArrayList<Order>();
+
+    public ArrayList<Order> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Order> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void ordered_item(Order order) {
+        inventory.add(order);
+    }
+
+    public String toString() {
+        String result = "";
+        double total = 0;
+        for (int j = 0; j < inventory.size(); j++) {
+            result = result + inventory.get(j).getOrdered_Product();
+        }
+        for (int j = 0; j < inventory.size(); j++) {
+            total = total + inventory.get(j).getOrdered_Price();
+        }
+        result = result + "\nGrand Total" + total;
+        return result;
+    }
+}
