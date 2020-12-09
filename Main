@@ -1,0 +1,85 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        ArrayList<Convenience_Store> items = new ArrayList<Convenience_Store>();
+
+        Convenience_Store cs = new Convenience_Store("Red-Hot Spicy Doritos",2.99);
+        items.add(cs);
+        cs = new Convenience_Store("Cool Ranch Doritos",2.99);
+        items.add(cs);
+        cs = new Convenience_Store("Coke",0.99);
+        items.add(cs);
+        cs = new Convenience_Store("Diet Coke",0.99);
+        items.add(cs);
+        cs = new Convenience_Store("Pepsi",0.99);
+        items.add(cs);
+        cs = new Convenience_Store("Five Hour Energy",3.99);
+        items.add(cs);
+        cs = new Convenience_Store(" Sunflower Seeds",0.99);
+        items.add(cs);
+        cs = new Convenience_Store("Peanuts",0.99);
+        items.add(cs);
+        cs = new Convenience_Store(" Mac Book Chargers",120.00);
+        items.add(cs);
+        cs = new Convenience_Store("Dell Chargers",50.00);
+        items.add(cs);
+
+        for (int i=0; i< items.size();i++){
+            System.out.println(items.get(i).getProducts() + " @ " +items.get(i).getPrices());
+        }
+
+        Scanner input = new Scanner(System.in);
+        Order ord = new Order();
+        Buyer shopper = new Buyer();
+        Inventories invn = new Inventories();
+        String choice="";
+        String count ="";
+
+        do{
+            System.out.println("1)Add Buyer 2)Close");
+            choice = input.nextLine();
+
+            if(choice.equals("1")){
+                System.out.println("The buyer name is");
+                String customer = input.nextLine();
+                shopper = new Buyer();
+                shopper.setCustomer_name(customer);
+
+                String pur_item;
+                do{
+                    System.out.println("3)Enter items to purchase 4)Finish Purchase");
+                    pur_item= input.nextLine();
+                    int temp=-1;
+                    for(int i=0; i< items.size();i++){
+                        if(items.get(i).getProducts().equals(pur_item)){
+                            temp=i;
+                        }
+                    }
+                    if(temp != -1){
+                        String item_purchased=items.get(temp).getProducts();
+                        Double item_price = items.get(temp).getPrices();
+                        ord = new Order();
+                        ord.setOrdered_Product(item_purchased);
+                        ord.setOrdered_Price(item_price);
+                        shopper.ordItem(ord);
+                        invn.ordered_item(ord);
+                        System.out.println("Price: " + ord.getOrdered_Price());
+                    }
+                } while (! pur_item.equals("4"));
+                count = count + shopper.toString();
+            } else{
+                System.out.println();
+            }
+        } while (! choice.equals("2"));
+        System.out.println("Closing Receipts");
+        System.out.println(count);
+        System.out.println("Inventory Sold");
+        System.out.println(invn.toString());
+    }
+}
