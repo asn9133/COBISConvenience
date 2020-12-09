@@ -1,0 +1,36 @@
+package com.company;
+
+public class Order {
+
+    private String Ordered_Product;
+    private double Ordered_Price;
+
+    public Order(String Ordered_Product,double Ordered_Price){
+        this.Ordered_Product=Ordered_Product;
+        this.Ordered_Price=Ordered_Price;
+    }
+
+    public Order(){
+
+    }
+
+    public String getOrdered_Product() {
+        return Ordered_Product;
+    }
+
+    public void setOrdered_Product(String ordered_Product) {
+        Ordered_Product = ordered_Product;
+    }
+
+    public double getOrdered_Price() {
+        return Ordered_Price;
+    }
+
+    public void setOrdered_Price(double ordered_Price) {
+        Ordered_Price = ordered_Price;
+    }
+
+    public String toString(){
+        return Ordered_Product + " @ " + Ordered_Price;
+    }
+}
